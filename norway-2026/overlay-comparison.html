@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jotunheimen — Our 7-day plan vs. the solo 100 km grind</title>
+<style>
+  :root{
+    --ink:#1c2321; --muted:#5b6b66; --line:#d8e0dc; --bg:#f5f7f5; --card:#fff;
+    --d1:#d7263d; --d2:#f46036; --d3:#2e9e3f; --d4:#e8a200; --d5:#6a4c93; --d6:#e76f51; --d7:#118ab2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 64px;}
+  h1{font-size:30px;margin:0 0 4px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 28px;font-size:15px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:0 0 26px;
+    box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  h2{font-size:19px;margin:0 0 14px}
+  svg{width:100%;height:auto;display:block}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:16px;font-size:13.5px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{width:22px;height:5px;border-radius:3px;display:inline-block}
+  .sw.dash{background:repeating-linear-gradient(90deg,#9aa8a3 0 6px,transparent 6px 11px);height:3px}
+  table{border-collapse:collapse;width:100%;font-size:14.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  td.day{font-weight:600;white-space:nowrap}
+  .pill{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:-1px}
+  .vs th:nth-child(2){color:#b1493f}.vs th:nth-child(3){color:#1d7a4f}
+  .vs td:nth-child(2){background:#fdf3f1}.vs td:nth-child(3){background:#eef7f1}
+  .note{font-size:13px;color:var(--muted);margin-top:12px;border-left:3px solid var(--line);padding-left:12px}
+  .big{font-size:21px;font-weight:700;letter-spacing:-.01em}
+  .cap{font-size:12px;color:var(--muted)}
+  strong.h{background:#fff3cf;padding:0 3px;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Same loop, two very different trips</h1>
+  <p class="sub">Jesper Feldmann's <em>"Solo Hiking 100 km in Jotunheimen"</em> (Jun 19 2022, ~60 mi / 11,427 ft gain, ~42 h moving) overlaid against your 7-day hut-paced plan. Schematic — not to scale; his camps are estimated from his stats, not his published track.</p>
+
+  <!-- MAP -->
+  <div class="card">
+    <h2>The route, broken into your days</h2>
+    <svg viewBox="0 0 1000 620" role="img" aria-label="Schematic map of the Gjende loop">
+      <!-- Lake Gjende -->
+      <path d="M820,470 Q610,430 380,500" fill="none" stroke="#bcd8e8" stroke-width="22" stroke-linecap="round"/>
+      <text x="585" y="505" class="cap" fill="#5b7e91" font-style="italic" font-size="15" text-anchor="middle">Lake Gjende</text>
+      <!-- small lakes -->
+      <ellipse cx="705" cy="402" rx="34" ry="13" fill="#cfe6f1"/>
+      <text x="705" y="406" font-size="11" fill="#5b7e91" text-anchor="middle">Bessvatnet</text>
+      <ellipse cx="662" cy="332" rx="30" ry="12" fill="#cfe6f1"/>
+      <text x="662" y="336" font-size="10" fill="#5b7e91" text-anchor="middle">Russvatnet</text>
+
+      <!-- FERRY leg (dashed) — finale only -->
+      <path d="M380,500 Q600,452 820,470" fill="none" stroke="#9aa8a3" stroke-width="3.5" stroke-dasharray="7 6"/>
+
+      <!-- DAY SEGMENTS -->
+      <!-- D1 Besseggen: Memurubu -> Bessvatnet -> Gjendesheim -->
+      <path d="M600,460 Q665,360 705,402 Q760,420 820,470" fill="none" stroke="var(--d1)" stroke-width="6" stroke-linecap="round"/>
+      <!-- D2 Memurubu -> Russvatnet -> Glitterheim -->
+      <path d="M600,460 Q640,395 662,332 Q672,290 690,250" fill="none" stroke="var(--d2)" stroke-width="6" stroke-linecap="round"/>
+      <!-- D3 Glitterheim -> Spiterstulen -->
+      <path d="M690,250 Q560,200 430,200" fill="none" stroke="var(--d3)" stroke-width="6" stroke-linecap="round"/>
+      <!-- D4 Galdhopiggen out-and-back -->
+      <path d="M430,200 Q375,168 335,150" fill="none" stroke="var(--d4)" stroke-width="7" stroke-linecap="round"/>
+      <!-- D5 Spiterstulen -> Leirvassbu -->
+      <path d="M430,200 Q380,255 360,320" fill="none" stroke="var(--d5)" stroke-width="6" stroke-linecap="round"/>
+      <!-- D6 Leirvassbu -> Olavsbu -->
+      <path d="M360,320 Q420,360 470,410" fill="none" stroke="var(--d6)" stroke-width="6" stroke-linecap="round"/>
+      <!-- D7 Olavsbu -> Gjendebu -->
+      <path d="M470,410 Q425,455 380,500" fill="none" stroke="var(--d7)" stroke-width="6" stroke-linecap="round"/>
+
+      <!-- HUT / POINT markers -->
+      <g font-size="13" font-weight="600">
+        <circle cx="820" cy="470" r="8" fill="#1c2321"/><text x="832" y="474">Gjendesheim ▸ start/end (coach + ferry)</text>
+        <circle cx="600" cy="460" r="6" fill="#fff" stroke="#1c2321" stroke-width="2.5"/><text x="566" y="478" text-anchor="end">Memurubu</text>
+        <circle cx="380" cy="500" r="7" fill="#1c2321"/><text x="368" y="520" text-anchor="end">Gjendebu</text>
+        <circle cx="690" cy="250" r="6" fill="#fff" stroke="#1c2321" stroke-width="2.5"/><text x="702" y="246">Glitterheim</text>
+        <circle cx="430" cy="200" r="6" fill="#fff" stroke="#1c2321" stroke-width="2.5"/><text x="442" y="196">Spiterstulen</text>
+        <path d="M335,150 l-9,16 l18,0 z" fill="#e8a200" stroke="#1c2321" stroke-width="1.5"/><text x="322" y="142" text-anchor="end">Galdhøpiggen 8,100 ft</text>
+        <circle cx="360" cy="320" r="6" fill="#fff" stroke="#1c2321" stroke-width="2.5"/><text x="348" y="324" text-anchor="end">Leirvassbu</text>
+        <circle cx="470" cy="410" r="6" fill="#fff" stroke="#1c2321" stroke-width="2.5"/><text x="482" y="406">Olavsbu</text>
+      </g>
+
+      <!-- Solo hiker estimated camps -->
+      <g>
+        <path d="M690,250 m-9,-9 l18,18 m0,-18 l-18,18" stroke="#7a7f7c" stroke-width="2.5"/>
+        <text x="690" y="226" font-size="11" fill="#7a7f7c" text-anchor="middle" font-style="italic">▲ solo camp 1 (~20 mi, est.)</text>
+        <path d="M360,320 m-9,-9 l18,18 m0,-18 l-18,18" stroke="#7a7f7c" stroke-width="2.5"/>
+        <text x="300" y="300" font-size="11" fill="#7a7f7c" text-anchor="middle" font-style="italic">▲ solo camp 2 (~40 mi, est.)</text>
+      </g>
+    </svg>
+
+    <div class="legend">
+      <span><i class="sw" style="background:var(--d1)"></i>D1 Besseggen</span>
+      <span><i class="sw" style="background:var(--d2)"></i>D2 → Glitterheim</span>
+      <span><i class="sw" style="background:var(--d3)"></i>D3 → Spiterstulen</span>
+      <span><i class="sw" style="background:var(--d4)"></i>D4 Galdhøpiggen</span>
+      <span><i class="sw" style="background:var(--d5)"></i>D5 → Leirvassbu</span>
+      <span><i class="sw" style="background:var(--d6)"></i>D6 → Olavsbu</span>
+      <span><i class="sw" style="background:var(--d7)"></i>D7 → Gjendebu</span>
+      <span><i class="sw dash"></i>ferry — finale only (you ride, he walked)</span>
+    </div>
+    <p class="note">Your loop is essentially his loop <strong>plus the north-west arm out to Spiterstulen &amp; Galdhøpiggen</strong> — his track stayed in the Gjende interior and didn't bag the summit. You walk the Besseggen ridge through to Memurubu just like he did, and take the scenic <em>ferry</em> only for the finale leg back across Gjende.</p>
+  </div>
+
+  <!-- HEADLINE CONTRAST -->
+  <div class="card">
+    <h2>Same ~60 mi — his way vs. yours</h2>
+    <table class="vs">
+      <tr><th>&nbsp;</th><th>Jesper, solo (Jun 2022)</th><th>Your group (Aug–Sep 2026)</th></tr>
+      <tr><td class="day">Distance</td><td>~60 mi</td><td>~62 mi</td></tr>
+      <tr><td class="day">Days of hiking</td><td class="big">~3</td><td class="big">7</td></tr>
+      <tr><td class="day">Average per day</td><td>~20 mi</td><td>~5–10 mi (one true rest-pace day)</td></tr>
+      <tr><td class="day">Moving time / day</td><td>~14 h</td><td>~5–7 h</td></tr>
+      <tr><td class="day">Nights</td><td>wild camp, self-supported</td><td>wild camp every night (huts for emergencies)</td></tr>
+      <tr><td class="day">Galdhøpiggen (8,100 ft)</td><td>no</td><td><strong class="h">yes — Day 4</strong></td></tr>
+      <tr><td class="day">Conditions</td><td>deep mid-June snow</td><td>melted-out late summer, far safer footing</td></tr>
+      <tr><td class="day">The vibe</td><td>fast-and-light endurance push</td><td>self-supported camping, paced &amp; social</td></tr>
+    </table>
+    <p class="note">His <strong>42 hours of moving time</strong> is the tell: compressed into ~3 days that's ~14 h on your feet daily. That's exactly the "max-mileage, max-struggle" trip you said you <em>don't</em> want. You cover the same legendary ground — and add Norway's highest peak — at roughly half the daily load.</p>
+  </div>
+
+  <!-- DAY-BY-DAY OVERLAY -->
+  <div class="card">
+    <h2>Where you'd be vs. where he was grinding</h2>
+    <table>
+      <tr><th>Your day</th><th>Segment</th><th>mi (cum.)</th><th>His progress on the same ground</th></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d1)"></span>D1</td><td>Gjendesheim → <strong>Besseggen</strong> ridge → Memurubu</td><td>9 (9)</td><td>Knocked out in his first morning</td></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d2)"></span>D2</td><td>Memurubu → <strong>Glitterheim</strong></td><td>12 (20)</td><td><em>≈ his camp 1</em> — he reached here Day 1; you arrive Day 2</td></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d3)"></span>D3</td><td>Glitterheim → <strong>Spiterstulen</strong></td><td>10 (30)</td><td>(off his loop — your NW detour begins)</td></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d4)"></span>D4</td><td><strong>Galdhøpiggen</strong> summit &amp; back</td><td>8 (38)</td><td>He skipped the summit entirely</td></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d5)"></span>D5</td><td>Spiterstulen → <strong>Leirvassbu</strong> (recovery)</td><td>9 (48)</td><td><em>≈ his camp 2</em> — he hit this zone Day 2; you arrive Day 5, rested</td></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d6)"></span>D6</td><td>Leirvassbu → <strong>Olavsbu</strong></td><td>8 (56)</td><td>His final push back toward Gjende</td></tr>
+      <tr><td class="day"><span class="pill" style="background:var(--d7)"></span>D7</td><td>Olavsbu → <strong>Gjendebu</strong> → ferry out</td><td>8 (64)</td><td>He closed the loop here on Day 3</td></tr>
+    </table>
+    <p class="note">Read the right column top-to-bottom: your <strong>Days 1–2</strong> ≈ his <strong>Day 1</strong>; your <strong>Days 3–5</strong> (incl. the summit) ≈ his <strong>Day 2</strong>; your <strong>Days 6–7</strong> ≈ his <strong>Day 3</strong>. Same mountains, ~2.3× the time to enjoy them — and like him you're camping every night, just at a saner pace.</p>
+  </div>
+
+  <p class="cap">Schematic only — hut positions are approximate and the map is not to scale. Jesper's two camps are estimated by splitting his ~60 mi into thirds, since his exact track isn't downloadable. Source stats from his AllTrails recording (Jun 19 2022).</p>
+</div>
+</body>
+</html>

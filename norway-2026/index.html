@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Norway 2026 — Jotunheimen + Oslo</title>
+<style>
+  :root{
+    --ink:#16201d; --muted:#5d6f69; --faint:#8a9893; --line:#dde5e1;
+    --bg:#eef2ef; --card:#ffffff; --green:#2e7d52; --green-d:#1f5d3c;
+    --teal:#0f8a9b; --amber:#e2960f; --red:#cc4030; --orange:#e0772e; --slate:#5b6b77; --purple:#6a4c93;
+    --shadow:0 1px 3px rgba(20,40,30,.06),0 6px 24px rgba(20,40,30,.05);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  a{color:var(--green-d)}
+  /* HERO */
+  .hero{background:linear-gradient(150deg,#1f5d3c 0%,#0f8a9b 100%);color:#fff;padding:54px 24px 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:
+    radial-gradient(900px 300px at 80% -20%,rgba(255,255,255,.14),transparent 60%);pointer-events:none}
+  .hero-in{max-width:1080px;margin:0 auto;position:relative}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:12px;opacity:.85;font-weight:700}
+  .hero h1{font-size:42px;line-height:1.05;margin:10px 0 6px;letter-spacing:-.02em}
+  .hero .lede{font-size:18px;opacity:.95;max-width:680px;margin:0 0 22px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:rgba(255,255,255,.16);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600}
+  .chip b{font-weight:800}
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1080px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 14px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav-in::-webkit-scrollbar{display:none}
+  nav a{flex:0 0 auto;color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:13px 12px;border-bottom:2.5px solid transparent;white-space:nowrap}
+  nav a:hover{color:var(--ink)}
+  nav a.active{color:var(--green-d);border-color:var(--green)}
+  /* LAYOUT */
+  .wrap{max-width:1080px;margin:0 auto;padding:8px 24px 70px}
+  section{padding:34px 0 8px;scroll-margin-top:60px}
+  .sec-h{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:var(--green);margin:0 0 4px}
+  h2{font-size:27px;letter-spacing:-.01em;margin:0 0 16px}
+  h3{font-size:18px;margin:22px 0 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);margin:0 0 18px}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  .small{font-size:13.5px}
+  ul{margin:6px 0 12px;padding-left:20px}li{margin:4px 0}
+  /* callouts */
+  .callout{border-radius:14px;padding:16px 18px;margin:14px 0;font-size:15px;border:1px solid}
+  .c-warn{background:#fff6e9;border-color:#f4d49a}
+  .c-key{background:#e9f6ee;border-color:#bfe3cc}
+  .c-info{background:#e8f4f7;border-color:#bce0e8}
+  .c-warn b,.c-key b,.c-info b{font-weight:800}
+  .tag{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+    padding:2px 8px;border-radius:6px;vertical-align:1px;margin-right:6px}
+  .t-warn{background:#f4d49a;color:#7a5200}.t-key{background:#bfe3cc;color:#1f5d3c}.t-info{background:#bce0e8;color:#0c5b68}
+  /* tables */
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}
+  tr:last-child td{border-bottom:none}
+  .table-card{overflow-x:auto}
+  /* badges */
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+  .b{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+  .b-dist{background:#eef2ef;color:#3a4a44;border-color:#dde5e1}
+  .b-easy{background:#eef1f4;color:var(--slate)}
+  .b-mod{background:#e9f6ee;color:var(--green-d)}
+  .b-rec{background:#e4f5f3;color:#0c6f6b}
+  .b-push{background:#fdeede;color:#a8551a}
+  .b-hard{background:#fbe7e3;color:#9e2f22}
+  .b-sleep{background:#f3eefa;color:#553a7a}
+  /* DAY cards */
+  .daygrid{display:flex;flex-direction:column;gap:12px}
+  details.day{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  details.day>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+  details.day>summary::-webkit-details-marker{display:none}
+  .d-date{font-size:12px;font-weight:800;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;flex:0 0 88px}
+  .d-title{font-size:17px;font-weight:700;flex:1 1 220px;min-width:160px}
+  .d-title .dx{color:var(--green);font-weight:800}
+  .chev{margin-left:auto;color:var(--faint);transition:transform .2s;flex:0 0 auto}
+  details.day[open] .chev{transform:rotate(90deg)}
+  .day-body{padding:2px 20px 18px;border-top:1px solid var(--line);margin-top:4px}
+  .sched{width:100%;font-size:14px;margin-top:8px}
+  .sched td{padding:7px 10px 7px 0;border-bottom:1px solid #eef2ef}
+  .sched td.t{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700;color:var(--green-d);width:108px;vertical-align:top}
+  .sleep-line{margin-top:12px;font-size:13.5px;font-weight:700;color:#553a7a}
+  .ctrls{display:flex;gap:8px;margin:0 0 14px}
+  .btn{font:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--muted);padding:7px 13px;border-radius:9px}
+  .btn:hover{color:var(--ink);border-color:var(--faint)}
+  /* map */
+  svg.map{width:100%;height:auto;display:block;background:#f3f7f4;border-radius:12px}
+  .legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:14px;font-size:13px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{width:20px;height:5px;border-radius:3px;display:inline-block}
+  .sw.dash{background:repeating-linear-gradient(90deg,#9aa8a3 0 6px,transparent 6px 11px);height:3px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}.hero h1{font-size:33px}}
+  .foot{color:var(--faint);font-size:12.5px;margin-top:26px;text-align:center}
+  strong.h{background:#fff3cf;padding:0 4px;border-radius:4px}
+  /* print */
+  @media print{
+    nav{display:none}.hero{background:#1f5d3c !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    details.day>*:not(summary){display:block !important}.chev{display:none}
+    .card,details.day{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="kicker">Aug 25 – Sep 7, 2026 · 5–6 guys</div>
+    <h1>Norway: Jotunheimen &amp; Oslo</h1>
+    <p class="lede">A 7-day self-supported tent-camping loop through Norway's greatest mountains — Besseggen, Galdhøpiggen, and the legendary Gjende ferry — bookended by Oslo. Car-free, sleeping under the sky every night.</p>
+    <div class="chips">
+      <div class="chip">🗓️ <b>13</b> days</div>
+      <div class="chip">🥾 <b>7</b> hiking days</div>
+      <div class="chip">📏 <b>~62 mi</b> on foot</div>
+      <div class="chip">⛺ <b>Camp</b> every night</div>
+      <div class="chip">⛰️ <b>Galdhøpiggen</b> 8,100 ft</div>
+      <div class="chip">🚌 <b>Car-free</b> · 1 coach each way</div>
+      <div class="chip">⛴️ <b>Gjende ferry</b></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-in" id="nav">
+    <a href="#overview">Overview</a>
+    <a href="#logistics">Logistics</a>
+    <a href="#hike">The Hike</a>
+    <a href="#days">Day by Day</a>
+    <a href="#food">Food</a>
+    <a href="#booking">Booking</a>
+    <a href="#budget">Budget</a>
+    <a href="#conditions">Conditions</a>
+    <a href="#options">Options</a>
+    <a href="#validation">The Solo Test</a>
+    <a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <p class="sec-h">The shape of the trip</p>
+  <h2>Oslo → Jotunheimen loop → Oslo</h2>
+  <div class="card">
+    <p>Two nights in Oslo to recover from the flight and buy fuel/food, then a <b>7-day loop out of Gjendesheim</b> through the heart of Jotunheimen, then back to Oslo for the flight home. The whole thing is <b>car-free</b>: one coach in, one coach out, and a ferry across Lake Gjende. ~65/35 mountain/city — your target. In the mountains you're <b>fully self-supported — camping every night</b> under Norway's right-to-roam, with the DNT huts kept in your back pocket purely as a weather bailout.</p>
+    <div class="table-card">
+    <table>
+      <tr><th>Phase</th><th>Dates</th><th>Nights</th><th>Where</th></tr>
+      <tr><td><b>Oslo — arrival + prep</b></td><td>Aug 26–27</td><td>2</td><td>Apartment, Grünerløkka / Sentrum</td></tr>
+      <tr><td><b>Jotunheimen loop</b></td><td>Aug 28 – Sep 5</td><td>8</td><td>Wild camping every night · huts = weather emergencies</td></tr>
+      <tr><td><b>Oslo — city day</b></td><td>Sep 5–6</td><td>2</td><td>Apartment</td></tr>
+      <tr><td><b>Fly home</b></td><td>Sep 7</td><td>—</td><td>Depart OSL 1:50 PM</td></tr>
+    </table>
+    </div>
+    <div class="callout c-info"><span class="tag t-info">why a loop</span> Starting and finishing at the same trailhead (Gjendesheim) means <b>one coach each way and zero taxis</b> — and it's forced by the transport reality below. A point-to-point traverse would strand you with no September bus out of the mountains.</div>
+  </div>
+</section>
+
+<!-- LOGISTICS -->
+<section id="logistics">
+  <p class="sec-h">Getting there &amp; around</p>
+  <h2>The logistics that shape everything</h2>
+  <div class="card">
+    <div class="callout c-warn"><span class="tag t-warn">the big one</span> <b>All the cheap seasonal feeder buses into Jotunheimen stop Aug 16, 2026</b> (Innlandstrafikk's official 2026 timetable) — the Otta→Gjendesheim, Lom→Spiterstulen, and Lom→Juvasshytta shuttles are done before you land. So the train-to-Otta plan is out.</div>
+    <div class="callout c-key"><span class="tag t-key">the fix</span> The <b>direct Valdresekspressen coach Oslo ↔ Gjendesheim</b> (NOR-WAY) runs into early October. Bus in, hike the loop, bus out. Done.</div>
+    <h3>The three moving parts</h3>
+    <div class="table-card">
+    <table>
+      <tr><th>Leg</th><th>How</th><th>Time</th><th>Notes</th></tr>
+      <tr><td>OSL airport → Oslo</td><td><b>Vy</b> regional train (not Flytoget)</td><td>~23 min</td><td>~$11–13; half the price of Flytoget for 4 min</td></tr>
+      <tr><td>Oslo ⇄ Gjendesheim</td><td><b>Valdresekspressen</b> coach</td><td>~4h15–4h30</td><td>Departs Oslo ~08:30; runs into early Oct</td></tr>
+      <tr><td>On Lake Gjende (finale)</td><td><b>Gjende ferry</b> ⛴️</td><td>~50 min</td><td>Gjendebu → Gjendesheim, the full-length cruise out; daily through Sep 13</td></tr>
+    </table>
+    </div>
+    <div class="callout c-info">⛴️ <b>The ferry is a highlight, not just transport.</b> Your finale is the <b>full-length Gjendebåten cruise</b> from Gjendebu back to Gjendesheim — ~50 min gliding under the Besseggen ridge across milky-green glacial water, the whole 11-mile lake unrolling past the peaks. The best of the boat rides, saved for last.</div>
+    <p class="small muted">⚠️ Exact 2026 coach &amp; ferry times publish closer to the date — reconfirm on <a href="https://entur.no">Entur.no</a> ~2–4 weeks out and pre-book the ferry departures for a group of 6.</p>
+  </div>
+</section>
+
+<!-- THE HIKE -->
+<section id="hike">
+  <p class="sec-h">The route</p>
+  <h2>The Jotunheimen loop</h2>
+  <div class="card">
+    <p>~62 mi over 7 hiking days, front-loading the epic stuff while you're fresh, then tapering through three moderate days to the exit. Two marquee days — Besseggen and Galdhøpiggen — are done on a <b>day pack</b>.</p>
+    <svg class="map" viewBox="0 0 1000 560" role="img" aria-label="Schematic map of the loop">
+      <path d="M820,430 Q610,392 380,460" fill="none" stroke="#bcd8e8" stroke-width="20" stroke-linecap="round"/>
+      <text x="585" y="463" fill="#5b7e91" font-style="italic" font-size="14" text-anchor="middle">Lake Gjende</text>
+      <ellipse cx="705" cy="365" rx="32" ry="12" fill="#cfe6f1"/><text x="705" y="369" font-size="10.5" fill="#5b7e91" text-anchor="middle">Bessvatnet</text>
+      <ellipse cx="662" cy="298" rx="28" ry="11" fill="#cfe6f1"/><text x="662" y="302" font-size="10" fill="#5b7e91" text-anchor="middle">Russvatnet</text>
+      <!-- ferry (finale only) -->
+      <path d="M380,460 Q600,414 820,430" fill="none" stroke="#9aa8a3" stroke-width="3.5" stroke-dasharray="7 6"/>
+      <!-- segments -->
+      <path d="M600,422 Q665,328 705,365 Q760,384 820,430" fill="none" stroke="#cc4030" stroke-width="6" stroke-linecap="round"/>
+      <path d="M600,422 Q640,360 662,298 Q672,258 690,220" fill="none" stroke="#e0772e" stroke-width="6" stroke-linecap="round"/>
+      <path d="M690,220 Q560,172 430,172" fill="none" stroke="#2e7d52" stroke-width="6" stroke-linecap="round"/>
+      <path d="M430,172 Q375,142 335,126" fill="none" stroke="#e2960f" stroke-width="7" stroke-linecap="round"/>
+      <path d="M430,172 Q380,224 360,288" fill="none" stroke="#6a4c93" stroke-width="6" stroke-linecap="round"/>
+      <path d="M360,288 Q420,326 470,374" fill="none" stroke="#e07a5f" stroke-width="6" stroke-linecap="round"/>
+      <path d="M470,374 Q425,417 380,460" fill="none" stroke="#0f8a9b" stroke-width="6" stroke-linecap="round"/>
+      <!-- markers -->
+      <g font-size="12.5" font-weight="600" fill="#16201d">
+        <circle cx="820" cy="430" r="8" fill="#16201d"/><text x="832" y="434">Gjendesheim ▸ start/end</text>
+        <circle cx="600" cy="422" r="6" fill="#fff" stroke="#16201d" stroke-width="2.5"/><text x="568" y="440" text-anchor="end">Memurubu</text>
+        <circle cx="380" cy="460" r="7" fill="#16201d"/><text x="368" y="480" text-anchor="end">Gjendebu</text>
+        <circle cx="690" cy="220" r="6" fill="#fff" stroke="#16201d" stroke-width="2.5"/><text x="702" y="216">Glitterheim</text>
+        <circle cx="430" cy="172" r="6" fill="#fff" stroke="#16201d" stroke-width="2.5"/><text x="442" y="168">Spiterstulen</text>
+        <path d="M335,126 l-9,16 l18,0 z" fill="#e2960f" stroke="#16201d" stroke-width="1.4"/><text x="322" y="120" text-anchor="end">Galdhøpiggen 8,100 ft</text>
+        <circle cx="360" cy="288" r="6" fill="#fff" stroke="#16201d" stroke-width="2.5"/><text x="348" y="292" text-anchor="end">Leirvassbu</text>
+        <circle cx="470" cy="374" r="6" fill="#fff" stroke="#16201d" stroke-width="2.5"/><text x="482" y="370">Olavsbu</text>
+      </g>
+    </svg>
+    <div class="legend">
+      <span><i class="sw" style="background:#cc4030"></i>D1 Besseggen</span>
+      <span><i class="sw" style="background:#e0772e"></i>D2 → Glitterheim</span>
+      <span><i class="sw" style="background:#2e7d52"></i>D3 → Spiterstulen</span>
+      <span><i class="sw" style="background:#e2960f"></i>D4 Galdhøpiggen</span>
+      <span><i class="sw" style="background:#6a4c93"></i>D5 → Leirvassbu</span>
+      <span><i class="sw" style="background:#e07a5f"></i>D6 → Olavsbu</span>
+      <span><i class="sw" style="background:#0f8a9b"></i>D7 → Gjendebu</span>
+      <span><i class="sw dash"></i>ferry</span>
+    </div>
+  </div>
+
+  <div class="card table-card">
+    <table>
+      <tr><th>Day</th><th>Route</th><th>Dist</th><th>Time</th><th>Effort</th><th>Pack</th><th>Payoff</th></tr>
+      <tr><td><b>D1</b></td><td>Gjendesheim → <b>Besseggen</b> ridge → Memurubu</td><td>~8.5 mi</td><td>6–7 h</td><td>Hard (scramble)</td><td>Full</td><td>The iconic Gjende/Bessvatnet view</td></tr>
+      <tr><td><b>D2</b></td><td>Memurubu → <b>Glitterheim</b></td><td>~12 mi</td><td>~7 h</td><td>Push</td><td>Full</td><td>Russvatnet, remote high country</td></tr>
+      <tr><td><b>D3</b></td><td>Glitterheim → <b>Spiterstulen</b></td><td>~10 mi</td><td>~5.5 h</td><td>Moderate</td><td>Full</td><td>Into the high-peaks heart</td></tr>
+      <tr><td><b>D4</b></td><td><b>Galdhøpiggen</b> 8,100 ft &amp; back</td><td>~8 mi</td><td>7–9 h</td><td>Strenuous</td><td>Day pack</td><td>Roof of Norway — no guide needed</td></tr>
+      <tr><td><b>D5</b></td><td>Spiterstulen → <b>Leirvassbu</b></td><td>~9 mi</td><td>~5 h</td><td>Recovery</td><td>Full</td><td>Mellow valley, 6,500 ft peaks</td></tr>
+      <tr><td><b>D6</b></td><td>Leirvassbu → <b>Olavsbu</b> area</td><td>~7–9 mi</td><td>4–5 h</td><td>Moderate</td><td>Full</td><td>Kyrkja, remote wild camp in Rauddalen</td></tr>
+      <tr><td><b>D7</b></td><td>Olavsbu → <b>Gjendebu</b> → ferry out</td><td>~7–9 mi</td><td>4–5 h</td><td>Moderate</td><td>Full</td><td>Down to Gjende, ferry finale</td></tr>
+    </table>
+  </div>
+  <div class="callout c-warn"><span class="tag t-warn">respect these two</span> The <b>Besseggen scramble</b> (D1) is a ~1,300 ft hands-on grade-1 section — through-hiking E→W you <b>descend</b> it into Memurubu with full packs (the committing direction; take it slow, spot each other). The no-scramble <b>Bessvatnet bypass</b> skips it entirely if anyone's not feeling it. And we deliberately <b>ferry out from Gjendebu</b> to skip the sketchy chained Bukkelægret descent. Don't start exposed sections in fog or strong wind.</div>
+  <div class="callout c-info"><span class="tag t-info">camp flexibility</span> Since you're tenting, you're <b>not tied to hut spacing</b> — pitch wherever's scenic and break a long day in half if you want (e.g. camp near Russvatnet to split D2). The hut names below are your navigation waypoints and weather bailouts, not your bedtime.</div>
+</section>
+
+<!-- DAY BY DAY -->
+<section id="days">
+  <p class="sec-h">Hour by hour</p>
+  <h2>Day by day</h2>
+  <div class="ctrls">
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+  </div>
+  <div class="daygrid" id="daygrid">
+
+    <details class="day">
+      <summary><span class="d-date">Wed Aug 26</span><span class="d-title">Land in Oslo, easy evening</span>
+        <span class="badges"><span class="b b-easy">Arrival</span><span class="b b-sleep">Oslo</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">12:35</td><td>Land OSL Gardermoen</td></tr>
+        <tr><td class="t">12:35–13:45</td><td>Immigration + bags; grab a SIM/eSIM</td></tr>
+        <tr><td class="t">13:45–14:10</td><td><b>Vy train</b> → Oslo S (~23 min, ~$12). Not Flytoget.</td></tr>
+        <tr><td class="t">14:30</td><td>Check into apartment (Grünerløkka / Sentrum)</td></tr>
+        <tr><td class="t">15:00–17:00</td><td>Reset, shower, regroup</td></tr>
+        <tr><td class="t">17:00–18:30</td><td>Orientation walk: <b>Opera House roof</b> (free) → harbor</td></tr>
+        <tr><td class="t">19:00</td><td>Dinner in Grünerløkka; early night (jetlag)</td></tr>
+      </table><div class="sleep-line">🛏️ Sleep: Oslo apartment</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Thu Aug 27</span><span class="d-title">Prep day + Oslo highlights</span>
+        <span class="badges"><span class="b b-easy">City</span><span class="b b-sleep">Oslo</span></span><span class="chev">›</span></summary>
+      <div class="day-body">
+        <div class="callout c-warn small"><b>Fuel day.</b> You can't fly with gas canisters — buy stove fuel + any last gear here today.</div>
+        <table class="sched">
+        <tr><td class="t">09:30–11:30</td><td><b>Buy camping fuel + gear</b> — XXL Sport, G-Sport, or Milslukern. Canisters, fuel, freeze-dried meals (Real Turmat).</td></tr>
+        <tr><td class="t">11:30–13:00</td><td><b>Grocery haul</b> for the first ~3 days of trail food (Kiwi / Rema 1000)</td></tr>
+        <tr><td class="t">13:00–14:00</td><td>Lunch at Mathallen food hall</td></tr>
+        <tr><td class="t">14:00–15:00</td><td><b>Everyone signs up for DNT Ung</b> (~$36) — unlocks member hut rates + the self-service key</td></tr>
+        <tr><td class="t">15:00–18:00</td><td><b>Vigeland Park</b> (free) or <b>Holmenkollen</b> ski jump views</td></tr>
+        <tr><td class="t">18:00–19:30</td><td><b>Pack &amp; weigh packs.</b> Stage everything for a fast morning.</td></tr>
+        <tr><td class="t">19:30</td><td>Dinner; buy beer before 20:00 (sale cutoff). Early night.</td></tr>
+      </table><div class="sleep-line">🛏️ Sleep: Oslo apartment</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Fri Aug 28</span><span class="d-title">Coach to the mountains</span>
+        <span class="badges"><span class="b b-easy">Travel</span><span class="b b-sleep">⛺ Gjendesheim</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:30</td><td>Check out, walk to Oslo Bus Terminal (by Oslo S)</td></tr>
+        <tr><td class="t">~08:30</td><td><b>Valdresekspressen coach → Gjendesheim</b> (~4h15; ~$45). ⚠️ confirm time on Entur.</td></tr>
+        <tr><td class="t">~13:00</td><td>Arrive <b>Gjendesheim</b> (east end of Lake Gjende)</td></tr>
+        <tr><td class="t">13:00–14:00</td><td>Lunch, sort packs. <b>Buy ferry tickets</b> for tomorrow + <b>grab the DNT key</b> (your emergency-hut access, $10 deposit).</td></tr>
+        <tr><td class="t">14:00–17:00</td><td>Easy shakeout walk; <b>scout a lakeside pitch</b> away from the lodge</td></tr>
+        <tr><td class="t">18:00–19:30</td><td>Make camp, cook dinner, gear check, early night</td></tr>
+      </table><div class="sleep-line">⛺ Camp: lakeside near Gjendesheim</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Sat Aug 29</span><span class="d-title"><span class="dx">D1 ·</span> Besseggen ridge through-hike</span>
+        <span class="badges"><span class="b b-dist">~8.5 mi</span><span class="b b-hard">Hard · scramble</span><span class="b b-sleep">⛺ Memurubu</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:00</td><td>Break camp at Gjendesheim, breakfast, pack out fully</td></tr>
+        <tr><td class="t">08:00</td><td>Hike straight onto the <b>Besseggen ridge</b> from camp — a steady climb up over <b>Veslfjellet (5,720 ft)</b></td></tr>
+        <tr><td class="t">10:00–11:00</td><td>Reach the Besseggen high point — <b>the green Gjende vs blue Bessvatnet view opens up</b>. Photos, snacks.</td></tr>
+        <tr><td class="t">11:00–14:00</td><td>Traverse the spine, then <b>descend the steep scramble</b> down toward Memurubu — the crux, ~1,300 ft hands-on, full packs. Slow and steady. <i>(Bessvatnet bypass avoids it.)</i></td></tr>
+        <tr><td class="t">14:00–15:30</td><td>Final drop to <b>Memurubu</b> on the lakeshore; pitch camp</td></tr>
+        <tr><td class="t">15:30–19:30</td><td>Recover lakeside, dry gear, cook dinner</td></tr>
+      </table><div class="sleep-line">⛺ Camp: lakeside at Memurubu</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Sun Aug 30</span><span class="d-title"><span class="dx">D2 ·</span> Into the high country</span>
+        <span class="badges"><span class="b b-dist">~12 mi</span><span class="b b-push">Push</span><span class="b b-sleep">⛺ Glitterheim</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:00</td><td>Break camp at Memurubu, breakfast</td></tr>
+        <tr><td class="t">07:45</td><td>Start <b>Memurubu → Glitterheim</b> (~12 mi) straight from camp. North past Russvatnet, footbridges, snowfields. <i>Long day with full packs — can split with a camp near Russvatnet.</i></td></tr>
+        <tr><td class="t">12:30</td><td>Trailside lunch (Russvatnet)</td></tr>
+        <tr><td class="t">16:00–17:30</td><td>Reach the Glitterheim area; <b>pitch camp by the Veo river</b></td></tr>
+        <tr><td class="t">evening</td><td>Cook dinner; resupply at the Glitterheim kiosk if open</td></tr>
+      </table><div class="sleep-line">⛺ Camp: near Glitterheim (Veodalen)</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Mon Aug 31</span><span class="d-title"><span class="dx">D3 ·</span> Over to Spiterstulen</span>
+        <span class="badges"><span class="b b-dist">~10 mi</span><span class="b b-mod">Moderate</span><span class="b b-sleep">⛺ Visdalen</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:30</td><td>Break camp, breakfast</td></tr>
+        <tr><td class="t">08:30</td><td>Start <b>Glitterheim → Spiterstulen</b> via low Skautflye route (~10 mi, ~5.5 h). <i>Optional: high route over Glittertind 8,090 ft — clear weather only.</i></td></tr>
+        <tr><td class="t">12:00</td><td>Lunch</td></tr>
+        <tr><td class="t">14:00–15:00</td><td>Reach <b>Visdalen near Spiterstulen</b> — your Galdhøpiggen basecamp (2 nights). Pitch camp.</td></tr>
+        <tr><td class="t">15:00–18:30</td><td>Rest, load up — big climb tomorrow</td></tr>
+      </table><div class="sleep-line">⛺ Camp: Visdalen (Spiterstulen basecamp)</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Tue Sep 1</span><span class="d-title"><span class="dx">D4 ·</span> Galdhøpiggen — roof of Norway</span>
+        <span class="badges"><span class="b b-dist">~8 mi · 4,850 ft</span><span class="b b-hard">Strenuous</span><span class="b b-sleep">⛺ Visdalen</span></span><span class="chev">›</span></summary>
+      <div class="day-body">
+        <div class="callout c-key small"><b>No guide, no glacier.</b> The Spiterstulen route is a steep but non-technical marked trail — you get the same summit as the paid Juvasshytta glacier tour, for free. <b>Camp stays pitched</b> — summit on a day pack.</div>
+        <table class="sched">
+        <tr><td class="t">06:30</td><td>Big breakfast at camp</td></tr>
+        <tr><td class="t">07:15</td><td>Cross the Visa-river bridge, start climbing. ~8 mi round trip, ~4,850 ft gain.</td></tr>
+        <tr><td class="t">~11:30–12:30</td><td><b>Summit Galdhøpiggen — 8,100 ft, highest in Northern Europe.</b> Lunch, photos.</td></tr>
+        <tr><td class="t">12:30–16:00</td><td>Descend to camp</td></tr>
+        <tr><td class="t">16:00–19:30</td><td>Recover, cook dinner. <i>Anyone wanting a rest day can skip the summit — no shame.</i></td></tr>
+      </table><div class="sleep-line">⛺ Camp: Visdalen (Spiterstulen basecamp)</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Wed Sep 2</span><span class="d-title"><span class="dx">D5 ·</span> Recovery day to Leirvassbu</span>
+        <span class="badges"><span class="b b-dist">~9 mi</span><span class="b b-rec">Recovery</span><span class="b b-sleep">⛺ Leirvatnet</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">08:00</td><td>Relaxed breakfast, break camp</td></tr>
+        <tr><td class="t">09:00</td><td>Start <b>Spiterstulen → Leirvassbu</b> (~9 mi, gentle, ~1,180 ft gain). Easiest walking of the trip on purpose.</td></tr>
+        <tr><td class="t">12:00</td><td>Long scenic lunch</td></tr>
+        <tr><td class="t">14:00–15:00</td><td>Reach <b>Leirvatnet</b>; pitch camp on the shore, chill afternoon</td></tr>
+      </table><div class="sleep-line">⛺ Camp: Leirvatnet shore</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Thu Sep 3</span><span class="d-title"><span class="dx">D6 ·</span> Remote wild camp by Olavsbu</span>
+        <span class="badges"><span class="b b-dist">~7–9 mi</span><span class="b b-mod">Moderate</span><span class="b b-sleep">⛺ Rauddalen</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:30</td><td>Break camp, breakfast; top up water for the day</td></tr>
+        <tr><td class="t">08:30</td><td>Start <b>Leirvassbu → Olavsbu</b> (~7–9 mi) past <b>Kyrkja (6,665 ft)</b> over the Rauddalsbandet snowfield</td></tr>
+        <tr><td class="t">14:00–15:00</td><td>Reach the Olavsbu area; <b>pitch camp in Rauddalen</b>. (The Olavsbu self-service hut is right here as a weather bailout — you've got the key.)</td></tr>
+        <tr><td class="t">15:00–20:00</td><td>Cook dinner; deepest-in-the-mountains camp, total quiet</td></tr>
+      </table><div class="sleep-line">⛺ Camp: Rauddalen by Olavsbu</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Fri Sep 4</span><span class="d-title"><span class="dx">D7 ·</span> Down to Lake Gjende</span>
+        <span class="badges"><span class="b b-dist">~7–9 mi</span><span class="b b-mod">Moderate</span><span class="b b-sleep">⛺ Gjendebu</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:30</td><td>Break camp, cook breakfast</td></tr>
+        <tr><td class="t">08:30</td><td>Start <b>Olavsbu → Gjendebu</b> (~7–9 mi) through Rauddalen, down toward the lake</td></tr>
+        <tr><td class="t">14:00–15:30</td><td>Reach <b>Gjendebu</b> (west end of Gjende); pitch your last camp on the lakeshore</td></tr>
+        <tr><td class="t">evening</td><td>Last mountain night, lakeside. <b>Confirm tomorrow's early ferry time.</b></td></tr>
+      </table><div class="sleep-line">⛺ Camp: lakeside at Gjendebu</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Sat Sep 5</span><span class="d-title"><span class="dx">D8 ·</span> Ferry out + coach to Oslo</span>
+        <span class="badges"><span class="b b-easy">Travel</span><span class="b b-sleep">Oslo</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">07:00</td><td>Break camp for the last time, breakfast</td></tr>
+        <tr><td class="t">~08:00</td><td>⛴️ <b>Morning ferry Gjendebu → Gjendesheim</b> (~50 min). ⚠️ Only ~2 boats/day — confirm the early one connects to the coach.</td></tr>
+        <tr><td class="t">~midday</td><td><b>Valdresekspressen coach → Oslo</b> (~4h15)</td></tr>
+        <tr><td class="t">~17:00</td><td>Arrive Oslo; check in; first proper shower &amp; burger; easy night out</td></tr>
+      </table><div class="sleep-line">🛏️ Sleep: Oslo apartment</div>
+      <div class="callout c-info small">Safety net: if the connection slips, Sep 6 is a flex day — worst case coach back Sep 6 morning and still make the flight.</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Sun Sep 6</span><span class="d-title">Best of Oslo in a day</span>
+        <span class="badges"><span class="b b-easy">City</span><span class="b b-sleep">Oslo</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">09:00</td><td>Slow breakfast (you've earned it)</td></tr>
+        <tr><td class="t">10:00–11:30</td><td><b>Vigeland Park</b> (free) — or a slower morning</td></tr>
+        <tr><td class="t">11:30–13:00</td><td>Lunch + <b>Aker Brygge / Tjuvholmen</b> waterfront</td></tr>
+        <tr><td class="t">13:30–16:00</td><td>🔥 <b>Floating sauna + fjord plunge</b> (KOK / SALT) — the post-hike move. Book the slot now.</td></tr>
+        <tr><td class="t">16:00–17:30</td><td><b>Munch Museum</b> (the Scream) — or swap for the Bygdøy polar-ship museums</td></tr>
+        <tr><td class="t">17:30–18:30</td><td>Souvenirs; <b>repack — pull stove fuel out of bags</b></td></tr>
+        <tr><td class="t">19:00</td><td><b>Final group dinner + night out</b>, Grünerløkka / Youngstorget</td></tr>
+      </table><div class="sleep-line">🛏️ Sleep: Oslo apartment</div></div>
+    </details>
+
+    <details class="day">
+      <summary><span class="d-date">Mon Sep 7</span><span class="d-title">Fly home ✈️</span>
+        <span class="badges"><span class="b b-easy">Departure</span></span><span class="chev">›</span></summary>
+      <div class="day-body"><table class="sched">
+        <tr><td class="t">08:30</td><td>Breakfast, final pack</td></tr>
+        <tr><td class="t">~10:15</td><td>Check out; <b>Vy train Oslo S → OSL</b> (~23 min)</td></tr>
+        <tr><td class="t">~11:00</td><td>At airport (≥2 h before the international flight)</td></tr>
+        <tr><td class="t">13:50</td><td><b>Wheels up.</b> ✌️</td></tr>
+      </table></div>
+    </details>
+
+  </div>
+</section>
+
+<!-- FOOD -->
+<section id="food">
+  <p class="sec-h">Eating on the trail</p>
+  <h2>Food &amp; resupply — fully self-supported</h2>
+  <div class="card">
+    <p>You're camping and <b>cooking every meal</b> — completely self-supported. The stove + fuel (bought in Oslo) and one-pot meals mean you eat on your own schedule, wherever you pitch. Resupply at hut kiosks along the way so you never carry more than ~3 days of food at once.</p>
+    <div class="grid2">
+      <div>
+        <h3>The system</h3>
+        <ul>
+          <li><b>Carry ~3 days, resupply en route.</b> Buy your start in Oslo, then restock at kiosks along the way — no hauling a full week of food.</li>
+          <li><b>Cook one-pot.</b> Fast, cheap, warm, and entirely on your schedule.</li>
+          <li><b>Hot food without sleeping in.</b> Passing a staffed hut at mealtime? Nothing stops you buying a meal, coffee, or a waffle — you're just not bunking there.</li>
+          <li><b>Camp is free.</b> Under the right-to-roam your only mountain spend is food, fuel, ferry &amp; coach.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Resupply points along the loop</h3>
+        <ul>
+          <li><b>Gjendesheim, Glitterheim, Leirvassbu, Gjendebu</b> — staffed-hut kiosks / DNT provisions</li>
+          <li><b>Spiterstulen &amp; Memurubu</b> — private lodges with shops</li>
+          <li><b>Olavsbu</b> — self-service provisions room; pay via the DNT app</li>
+        </ul>
+        <p class="small muted">Confirm stock &amp; hours when booking — shoulder-season kiosk hours vary. Carry 1–2 emergency dinners as backup.</p>
+      </div>
+    </div>
+    <h3>What to actually eat</h3>
+    <div class="table-card"><table>
+      <tr><th>Meal</th><th>Go-to</th></tr>
+      <tr><td><b>Breakfast</b></td><td>Instant oats + coffee, or crispbread/bread with cheese &amp; nut butter</td></tr>
+      <tr><td><b>Trail lunch</b></td><td>Norwegian style: flatbread/wraps, <i>brunost</i> (brown cheese), salami, hard cheese, chocolate, nuts</td></tr>
+      <tr><td><b>Dinner</b></td><td>One-pot pasta/couscous/noodles bulked with tuna or salami — or freeze-dried <b>Real Turmat</b> (local brand, sold at XXL/G-Sport in Oslo &amp; some kiosks) for no-fuss nights</td></tr>
+      <tr><td><b>Water</b></td><td>Streams up high are abundant and drinkable — fill from running water above the huts; no filter needed in most of Jotunheimen</td></tr>
+    </table></div>
+    <div class="callout c-key small"><span class="tag t-key">cost upside</span> Camping every night is <b>free</b> under the right-to-roam — so the whole mountain leg costs almost nothing beyond food, fuel, the ferry and the coach. Cheapest possible way to do Jotunheimen.</div>
+    <div class="callout c-info small"><span class="tag t-info">where you can pitch</span> Norway's <i>allemannsretten</i> lets you camp almost anywhere free — pitch <b>≥150 m from huts/cabins</b>, on durable ground, leave no trace. Near staffed huts there's often a tent area where a small fee gets you water/toilets/common room if you want them. <b>Streams up high are clean</b> — fill from running water above the huts.</div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <p class="sec-h">Lock it in</p>
+  <h2>Booking checklist</h2>
+  <div class="card">
+    <div class="callout c-key small"><span class="tag t-key">no hut bookings</span> Since you're camping, <b>nothing in the mountains needs reserving</b> — just transport, the Oslo apartment, and your weather-bailout kit.</div>
+    <ol>
+      <li><b>Flights</b> — locked (Aug 25 / Sep 7).</li>
+      <li><b>DNT Ung membership</b> for at least 1–2 of you (~$36) <b>+ grab the DNT standard key</b> — this is your storm escape hatch: it opens any locked self-service/emergency hut if the weather forces you off the tents. → dnt.no</li>
+      <li><b>Valdresekspressen coach</b> both ways (Oslo ↔ Gjendesheim) — nor-way.no / Entur once 2026 times publish.</li>
+      <li><b>Gjende ferry</b> — just the finale, Gjendebu→Gjendesheim (Sep 5) at gjende.no. Pre-book the early boat.</li>
+      <li><b>Oslo apartment</b> — one 2–3BR for Aug 26–28 and Sep 5–7 (same place if possible).</li>
+      <li><b>Oslo sauna</b> (KOK/SALT) for Sep 6 — book the slot now.</li>
+    </ol>
+    <p class="small muted">Huts are first-come if you ever need one — <i>"no one is turned away in the mountains."</i> Carry enough cash/card for an unplanned emergency hut night.</p>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget">
+  <p class="sec-h">What it costs</p>
+  <h2>Rough budget per person</h2>
+  <div class="card table-card">
+    <p class="small muted">Excludes flights, beer &amp; discretionary city spending (food, sauna, museums — played by ear on the ground). NOK → USD ≈ ÷10.</p>
+    <table>
+      <tr><th>Item</th><th>Est. per person</th></tr>
+      <tr><td>Valdresekspressen coach, round trip</td><td>~$90–110</td></tr>
+      <tr><td>Gjende ferry (finale, 1 leg)</td><td>~$25–35</td></tr>
+      <tr><td><b>8 nights camping</b> — free 🎉</td><td>$0</td></tr>
+      <tr><td>Trail food &amp; stove fuel (~9 days)</td><td>~$120–180</td></tr>
+      <tr><td>DNT Ung membership + key (emergency bailout)</td><td>~$36</td></tr>
+      <tr><td>Emergency-hut buffer (if a storm forces one night)</td><td>~$0–60</td></tr>
+      <tr><td>Oslo lodging (5 nights, split)</td><td>~$150–250</td></tr>
+      <tr><td>Airport train (Vy, round trip)</td><td>~$25</td></tr>
+      <tr><td><b>Ballpark total</b></td><td><b>~$450–700</b></td></tr>
+    </table>
+    <p class="small muted">City food, sauna, museums &amp; nightlife are left out on purpose — play those by ear when you're there.</p>
+    <div class="callout c-key small"><span class="tag t-key">camping wins</span> Sleeping in the tent every night zeroes out the biggest line item — the mountain leg now costs basically just food, fuel, ferry and coach. That's roughly <b>$300–400/person cheaper</b> than the hut version, money straight into the beer &amp; sauna budget.</div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions">
+  <p class="sec-h">What to expect out there</p>
+  <h2>Conditions &amp; safety</h2>
+  <div class="card">
+    <ul>
+      <li><b>Daylight:</b> plenty (~14 h on Sep 1, sunrise ~06:15 / sunset ~20:40) but shrinking ~5 min/day — <b>start early, carry headlamps.</b></li>
+      <li><b>Temps:</b> valleys 45–52 °F high / 34–39 °F low; on the high passes and Galdhøpiggen subtract ~10–18 °F — frost up high, near-freezing in bad weather. Real shell + insulation + gloves/hat.</li>
+      <li><b>Rain ~44% of days.</b> Plan for wet roughly every other day.</li>
+      <li><b>Snow can fall above ~4,900 ft anytime</b> and hides cairns. Don't start exposed sections (Besseggen, Galdhøpiggen) in fog or strong wind.</li>
+      <li><b>Camping every night = committing to cold, possibly wet pitches this late.</b> Bring a <b>3-season tent that handles wind</b>, a sleeping bag rated to ~<b>25 °F / -4 °C</b> (or warmer), and an <b>insulated pad (R-value ≥ 3.5)</b>. This is the gear that makes or breaks the trip.</li>
+      <li><b>The huts are your safety margin</b> — staffed &amp; open through ~Sep 13, so even though you're tenting, there's a warm bailout and kiosk resupply the whole route. If a real storm rolls in, duck into one (you've got the key). Summer footbridges still in.</li>
+      <li>Follow the <b>Fjellvettreglene</b> (Mountain Code); leave a route plan; <i>it's never too late to turn around.</i></li>
+    </ul>
+  </div>
+</section>
+
+<!-- OPTIONS -->
+<section id="options">
+  <p class="sec-h">If you want to tweak it</p>
+  <h2>Options &amp; alternatives</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Push past 65/35 (more mountain)</h3>
+      <p class="small">Skip the Aug 27 prep day, buy fuel the afternoon you land, coach out Aug 27, and add an 8th hiking day — an extra Glitterheim night with a <b>Glittertind 8,090 ft</b> summit, or a Memurubu night. Costs the jetlag buffer.</p>
+    </div>
+    <div class="card">
+      <h3>Gentler / cheaper (skip the big summit)</h3>
+      <p class="small">Drop the Glitterheim–Spiterstulen–Galdhøpiggen arm and do a relaxed <b>western Gjende loop</b> (Besseggen → Gjendebu → Olavsbu → Leirvassbu) with 5–8 mi days and tons of camping flexibility. No 4,850 ft climb, but you trade away the summit.</p>
+    </div>
+    <div class="card">
+      <h3>The glacier-guide Galdhøpiggen</h3>
+      <p class="small">Exists from Juvasshytta (roped glacier crossing, ~$50pp, daily through Sep 13) — but it forces a messier route + a private transfer out in September. The free Spiterstulen route in this plan gets the same summit cleaner.</p>
+    </div>
+    <div class="card">
+      <h3>Duck into huts more</h3>
+      <p class="small">Camping's the plan, but the huts are right there if the cold/wet wears thin — swap any night for a bed (~$15–30 youth-member at DNT huts, more at the private lodges). No need to decide in advance; pay on arrival. A warm dry night mid-trip can save morale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATION -->
+<section id="validation">
+  <p class="sec-h">Sanity check</p>
+  <h2>The solo-hiker test</h2>
+  <div class="card">
+    <p>A YouTuber's <b>"Solo Hiking 100 km in Jotunheimen"</b> (Jun 2022, ~60 mi, 11,427 ft gain) runs almost exactly this terrain — independent confirmation we've put you on the right ground. The difference is <b>pace</b>: he crushed it solo in ~3 brutal days (~14 h moving daily, deep June snow); you do the same legendary loop over <b>7 humane days</b>, <b>add Galdhøpiggen</b> (he skipped it), and have it in melted-out late-summer conditions. Like him you're self-supported and camping every night — just at a saner pace, with the huts as a storm bailout he didn't bother with.</p>
+    <p class="small"><a href="overlay-comparison.html">→ Open the full side-by-side comparison &amp; map overlay</a></p>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section id="sources">
+  <p class="sec-h">Trust but verify</p>
+  <h2>Sources &amp; what to reconfirm</h2>
+  <div class="card">
+    <div class="callout c-warn small"><b>Reconfirm ~2–4 weeks out on <a href="https://entur.no">Entur.no</a>:</b> exact 2026 Valdresekspressen times + last date to Gjendesheim · early-Sept Gjende ferry departures (pre-book the Sep 5 Gjendebu boat) · kiosk stock/hours for resupply · DNT key pickup before the trailhead.</div>
+    <p class="small muted">Verified Jun 23, 2026: Transport seasons — Innlandstrafikk (feeder buses end Aug 16), NOR-WAY Valdresekspressen, SJ Dovre line. Ferry — gjende.no (daily through Sep 13). Huts — ut.no / dnt.no, memurubu.no, spiterstulen.no, juvasshytta.no (all open through your dates; Memurubu/Leirvassbu/Glitterheim close Sep 13). Oslo — vy.no, visitoslo.com, KOK/SALT, Bygdøy ferry.</p>
+  </div>
+  <p class="foot">Built for the crew · Norway 2026 · all times &amp; prices to be reconfirmed before booking</p>
+</section>
+
+</div>
+
+<script>
+  // expand / collapse all days
+  const days = () => Array.from(document.querySelectorAll('details.day'));
+  document.getElementById('expandAll').onclick = () => days().forEach(d => d.open = true);
+  document.getElementById('collapseAll').onclick = () => days().forEach(d => d.open = false);
+
+  // active nav highlight
+  const links = Array.from(document.querySelectorAll('#nav a'));
+  const map = {};
+  links.forEach(a => map[a.getAttribute('href').slice(1)] = a);
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map[e.target.id];
+        if (a) { a.classList.add('active');
+          a.scrollIntoView({inline:'center', block:'nearest'}); }
+      }
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
